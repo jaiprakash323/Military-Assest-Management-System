@@ -226,14 +226,9 @@ const Purchases = () => {
 
             <form onSubmit={handleSubmit}>
               <div className="form-group" style={{ marginBottom: '16px' }}>
-<<<<<<< HEAD
-                <label className="form-label">Base</label>
-                <select
-=======
                 <label htmlFor="purchase-base" className="form-label">Base</label>
                 <select
                   id="purchase-base"
->>>>>>> 17bb1ec (Initial commit / Update project)
                   className="form-select"
                   value={formData.baseId}
                   onChange={(e) => setFormData({ ...formData, baseId: e.target.value })}
@@ -246,14 +241,9 @@ const Purchases = () => {
               </div>
 
               <div className="form-group" style={{ marginBottom: '16px' }}>
-<<<<<<< HEAD
-                <label className="form-label">Equipment Type</label>
-                <select
-=======
                 <label htmlFor="purchase-equipment-type" className="form-label">Equipment Type</label>
                 <select
                   id="purchase-equipment-type"
->>>>>>> 17bb1ec (Initial commit / Update project)
                   className="form-select"
                   value={formData.equipmentTypeId}
                   onChange={(e) => setFormData({ ...formData, equipmentTypeId: e.target.value })}
@@ -268,14 +258,9 @@ const Purchases = () => {
               </div>
 
               <div className="form-group" style={{ marginBottom: '16px' }}>
-<<<<<<< HEAD
-                <label className="form-label">Quantity</label>
-                <input
-=======
                 <label htmlFor="purchase-quantity" className="form-label">Quantity</label>
                 <input
                   id="purchase-quantity"
->>>>>>> 17bb1ec (Initial commit / Update project)
                   type="number"
                   className="form-input"
                   value={formData.quantity}
@@ -288,14 +273,9 @@ const Purchases = () => {
               </div>
 
               <div className="form-group" style={{ marginBottom: '24px' }}>
-<<<<<<< HEAD
-                <label className="form-label">Date</label>
-                <input
-=======
                 <label htmlFor="purchase-date" className="form-label">Date</label>
                 <input
                   id="purchase-date"
->>>>>>> 17bb1ec (Initial commit / Update project)
                   type="date"
                   className="form-input"
                   value={formData.date}

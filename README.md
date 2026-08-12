@@ -26,11 +26,7 @@ Net Movement = Purchases + Transfers In - Transfers Out
 | **Base Commander** | Base-scoped data, assignments, expenditures |
 | **Logistics Officer** | Purchases, transfers |
 
-<<<<<<< HEAD
-##  Setup Instructions
-=======
 ## 🏗️ Setup Instructions
->>>>>>> 17bb1ec (Initial commit / Update project)
 
 ### Prerequisites
 - Node.js v18+

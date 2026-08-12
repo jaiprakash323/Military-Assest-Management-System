@@ -272,42 +272,20 @@ const Assignments = () => {
             {activeTab === 'assignments' ? (
               <form onSubmit={handleAssignSubmit}>
                 <div className="form-group" style={{ marginBottom: '16px' }}>
-<<<<<<< HEAD
-                  <label className="form-label">Base</label>
-                  <select className="form-select" value={assignForm.baseId} onChange={(e) => setAssignForm({ ...assignForm, baseId: e.target.value })} required style={{ width: '100%' }}>
-=======
                   <label htmlFor="assign-base" className="form-label">Base</label>
                   <select id="assign-base" className="form-select" value={assignForm.baseId} onChange={(e) => setAssignForm({ ...assignForm, baseId: e.target.value })} required style={{ width: '100%' }}>
->>>>>>> 17bb1ec (Initial commit / Update project)
                     <option value="">Select Base</option>
                     {bases.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}
                   </select>
                 </div>
                 <div className="form-group" style={{ marginBottom: '16px' }}>
-<<<<<<< HEAD
-                  <label className="form-label">Equipment Type</label>
-                  <select className="form-select" value={assignForm.equipmentTypeId} onChange={(e) => setAssignForm({ ...assignForm, equipmentTypeId: e.target.value })} required style={{ width: '100%' }}>
-=======
                   <label htmlFor="assign-equipment-type" className="form-label">Equipment Type</label>
                   <select id="assign-equipment-type" className="form-select" value={assignForm.equipmentTypeId} onChange={(e) => setAssignForm({ ...assignForm, equipmentTypeId: e.target.value })} required style={{ width: '100%' }}>
->>>>>>> 17bb1ec (Initial commit / Update project)
                     <option value="">Select Equipment</option>
                     {equipmentTypes.map(e => <option key={e.id} value={e.id}>{e.name} ({e.category})</option>)}
                   </select>
                 </div>
                 <div className="form-group" style={{ marginBottom: '16px' }}>
-<<<<<<< HEAD
-                  <label className="form-label">Quantity</label>
-                  <input type="number" className="form-input" value={assignForm.quantity} onChange={(e) => setAssignForm({ ...assignForm, quantity: e.target.value })} placeholder="Enter quantity" min="1" required style={{ width: '100%' }} />
-                </div>
-                <div className="form-group" style={{ marginBottom: '16px' }}>
-                  <label className="form-label">Assigned To</label>
-                  <input type="text" className="form-input" value={assignForm.assignedTo} onChange={(e) => setAssignForm({ ...assignForm, assignedTo: e.target.value })} placeholder="e.g., Sgt. Mitchell, 3rd Platoon" required style={{ width: '100%' }} />
-                </div>
-                <div className="form-group" style={{ marginBottom: '24px' }}>
-                  <label className="form-label">Date</label>
-                  <input type="date" className="form-input" value={assignForm.date} onChange={(e) => setAssignForm({ ...assignForm, date: e.target.value })} required style={{ width: '100%' }} />
-=======
                   <label htmlFor="assign-quantity" className="form-label">Quantity</label>
                   <input id="assign-quantity" type="number" className="form-input" value={assignForm.quantity} onChange={(e) => setAssignForm({ ...assignForm, quantity: e.target.value })} placeholder="Enter quantity" min="1" required style={{ width: '100%' }} />
                 </div>
@@ -318,7 +296,6 @@ const Assignments = () => {
                 <div className="form-group" style={{ marginBottom: '24px' }}>
                   <label htmlFor="assign-date" className="form-label">Date</label>
                   <input id="assign-date" type="date" className="form-input" value={assignForm.date} onChange={(e) => setAssignForm({ ...assignForm, date: e.target.value })} required style={{ width: '100%' }} />
->>>>>>> 17bb1ec (Initial commit / Update project)
                 </div>
                 <button type="submit" className="btn btn-success" disabled={submitting} style={{ width: '100%' }}>
                   {submitting ? <><Loader2 size={16} style={{ animation: 'spin 1s linear infinite' }} /> Recording...</> : <><Users size={16} /> Record Assignment</>}
@@ -327,42 +304,20 @@ const Assignments = () => {
             ) : (
               <form onSubmit={handleExpendSubmit}>
                 <div className="form-group" style={{ marginBottom: '16px' }}>
-<<<<<<< HEAD
-                  <label className="form-label">Base</label>
-                  <select className="form-select" value={expendForm.baseId} onChange={(e) => setExpendForm({ ...expendForm, baseId: e.target.value })} required style={{ width: '100%' }}>
-=======
                   <label htmlFor="expend-base" className="form-label">Base</label>
                   <select id="expend-base" className="form-select" value={expendForm.baseId} onChange={(e) => setExpendForm({ ...expendForm, baseId: e.target.value })} required style={{ width: '100%' }}>
->>>>>>> 17bb1ec (Initial commit / Update project)
                     <option value="">Select Base</option>
                     {bases.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}
                   </select>
                 </div>
                 <div className="form-group" style={{ marginBottom: '16px' }}>
-<<<<<<< HEAD
-                  <label className="form-label">Equipment Type</label>
-                  <select className="form-select" value={expendForm.equipmentTypeId} onChange={(e) => setExpendForm({ ...expendForm, equipmentTypeId: e.target.value })} required style={{ width: '100%' }}>
-=======
                   <label htmlFor="expend-equipment-type" className="form-label">Equipment Type</label>
                   <select id="expend-equipment-type" className="form-select" value={expendForm.equipmentTypeId} onChange={(e) => setExpendForm({ ...expendForm, equipmentTypeId: e.target.value })} required style={{ width: '100%' }}>
->>>>>>> 17bb1ec (Initial commit / Update project)
                     <option value="">Select Equipment</option>
                     {equipmentTypes.map(e => <option key={e.id} value={e.id}>{e.name} ({e.category})</option>)}
                   </select>
                 </div>
                 <div className="form-group" style={{ marginBottom: '16px' }}>
-<<<<<<< HEAD
-                  <label className="form-label">Quantity</label>
-                  <input type="number" className="form-input" value={expendForm.quantity} onChange={(e) => setExpendForm({ ...expendForm, quantity: e.target.value })} placeholder="Enter quantity consumed" min="1" required style={{ width: '100%' }} />
-                </div>
-                <div className="form-group" style={{ marginBottom: '16px' }}>
-                  <label className="form-label">Description</label>
-                  <textarea className="form-input" value={expendForm.description} onChange={(e) => setExpendForm({ ...expendForm, description: e.target.value })} placeholder="e.g., Live-fire training exercise - Week 12" required style={{ width: '100%' }} />
-                </div>
-                <div className="form-group" style={{ marginBottom: '24px' }}>
-                  <label className="form-label">Date</label>
-                  <input type="date" className="form-input" value={expendForm.date} onChange={(e) => setExpendForm({ ...expendForm, date: e.target.value })} required style={{ width: '100%' }} />
-=======
                   <label htmlFor="expend-quantity" className="form-label">Quantity</label>
                   <input id="expend-quantity" type="number" className="form-input" value={expendForm.quantity} onChange={(e) => setExpendForm({ ...expendForm, quantity: e.target.value })} placeholder="Enter quantity consumed" min="1" required style={{ width: '100%' }} />
                 </div>
@@ -373,7 +328,6 @@ const Assignments = () => {
                 <div className="form-group" style={{ marginBottom: '24px' }}>
                   <label htmlFor="expend-date" className="form-label">Date</label>
                   <input id="expend-date" type="date" className="form-input" value={expendForm.date} onChange={(e) => setExpendForm({ ...expendForm, date: e.target.value })} required style={{ width: '100%' }} />
->>>>>>> 17bb1ec (Initial commit / Update project)
                 </div>
                 <button type="submit" className="btn btn-danger" disabled={submitting} style={{ width: '100%' }}>
                   {submitting ? <><Loader2 size={16} style={{ animation: 'spin 1s linear infinite' }} /> Recording...</> : <><Flame size={16} /> Record Expenditure</>}

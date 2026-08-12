@@ -255,14 +255,9 @@ const Transfers = () => {
 
             <form onSubmit={handleSubmit}>
               <div className="form-group" style={{ marginBottom: '16px' }}>
-<<<<<<< HEAD
-                <label className="form-label">Source Base</label>
-                <select
-=======
                 <label htmlFor="transfer-source-base" className="form-label">Source Base</label>
                 <select
                   id="transfer-source-base"
->>>>>>> 17bb1ec (Initial commit / Update project)
                   className="form-select"
                   value={formData.sourceBaseId}
                   onChange={(e) => setFormData({ ...formData, sourceBaseId: e.target.value })}
@@ -275,14 +270,9 @@ const Transfers = () => {
               </div>
 
               <div className="form-group" style={{ marginBottom: '16px' }}>
-<<<<<<< HEAD
-                <label className="form-label">Destination Base</label>
-                <select
-=======
                 <label htmlFor="transfer-dest-base" className="form-label">Destination Base</label>
                 <select
                   id="transfer-dest-base"
->>>>>>> 17bb1ec (Initial commit / Update project)
                   className="form-select"
                   value={formData.destBaseId}
                   onChange={(e) => setFormData({ ...formData, destBaseId: e.target.value })}
@@ -297,14 +287,9 @@ const Transfers = () => {
               </div>
 
               <div className="form-group" style={{ marginBottom: '16px' }}>
-<<<<<<< HEAD
-                <label className="form-label">Equipment Type</label>
-                <select
-=======
                 <label htmlFor="transfer-equipment-type" className="form-label">Equipment Type</label>
                 <select
                   id="transfer-equipment-type"
->>>>>>> 17bb1ec (Initial commit / Update project)
                   className="form-select"
                   value={formData.equipmentTypeId}
                   onChange={(e) => setFormData({ ...formData, equipmentTypeId: e.target.value })}
@@ -319,14 +304,9 @@ const Transfers = () => {
               </div>
 
               <div className="form-group" style={{ marginBottom: '24px' }}>
-<<<<<<< HEAD
-                <label className="form-label">Quantity</label>
-                <input
-=======
                 <label htmlFor="transfer-quantity" className="form-label">Quantity</label>
                 <input
                   id="transfer-quantity"
->>>>>>> 17bb1ec (Initial commit / Update project)
                   type="number"
                   className="form-input"
                   value={formData.quantity}

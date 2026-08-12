@@ -158,11 +158,7 @@ const Login = () => {
 
           <form onSubmit={handleSubmit}>
             <div className="form-group" style={{ marginBottom: '16px' }}>
-<<<<<<< HEAD
-              <label className="form-label">Username</label>
-=======
               <label htmlFor="login-username" className="form-label">Username</label>
->>>>>>> 17bb1ec (Initial commit / Update project)
               <input
                 id="login-username"
                 type="text"
@@ -176,11 +172,7 @@ const Login = () => {
             </div>
 
             <div className="form-group" style={{ marginBottom: '24px' }}>
-<<<<<<< HEAD
-              <label className="form-label">Password</label>
-=======
               <label htmlFor="login-password" className="form-label">Password</label>
->>>>>>> 17bb1ec (Initial commit / Update project)
               <div style={{ position: 'relative' }}>
                 <input
                   id="login-password"
