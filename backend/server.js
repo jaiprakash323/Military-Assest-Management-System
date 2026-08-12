@@ -107,7 +107,9 @@ const startServer = async () => {
   }
 };
 
-startServer();
+if (!process.env.VERCEL) {
+  startServer();
+}
 
 // Graceful shutdown
 process.on('SIGINT', async () => {
