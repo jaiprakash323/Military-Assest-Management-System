@@ -1,4 +1,4 @@
-# Military Asset Management System JP
+# Military Asset Management System
 
 An enterprise-grade web application for tracking military assets (vehicles, weapons, ammunition) across multiple bases with Role-Based Access Control (RBAC) and comprehensive audit trails.
 
