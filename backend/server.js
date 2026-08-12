@@ -4,7 +4,13 @@ dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
 import prisma from './config/db.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Route imports
 import authRoutes from './routes/authRoutes.js';
@@ -49,6 +55,18 @@ app.use('/api/purchases', purchaseRoutes);
 app.use('/api/transfers', transferRoutes);
 app.use('/api/assignments', assignmentRoutes);
 app.use('/api/expenditures', expenditureRoutes);
+
+// ─── Static Frontend (Production) ────────────────────────────────
+const frontendDistPath = path.join(__dirname, '../frontend/dist');
+if (fs.existsSync(frontendDistPath)) {
+  app.use(express.static(frontendDistPath));
+  app.get('*', (req, res, next) => {
+    if (req.originalUrl.startsWith('/api')) {
+      return next();
+    }
+    res.sendFile(path.join(frontendDistPath, 'index.html'));
+  });
+}
 
 // ─── 404 Handler ────────────────────────────────────────────────
 app.use((req, res) => {

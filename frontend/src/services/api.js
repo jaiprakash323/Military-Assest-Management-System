@@ -2,11 +2,31 @@ import axios from 'axios';
 
 const getApiBaseUrl = () => {
   const envUrl = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL;
-  if (envUrl) {
+  
+  // If explicitly set to a production (non-localhost) URL, use it
+  if (envUrl && !envUrl.includes('localhost') && !envUrl.includes('127.0.0.1')) {
     const trimmed = envUrl.replace(/\/$/, '');
     return trimmed.endsWith('/api') ? trimmed : `${trimmed}/api`;
   }
-  return 'http://localhost:5000/api';
+  
+  // In browser environment
+  if (typeof window !== 'undefined') {
+    const hostname = window.location.hostname;
+    const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '[::1]';
+    
+    if (isLocalhost) {
+      if (envUrl) {
+        const trimmed = envUrl.replace(/\/$/, '');
+        return trimmed.endsWith('/api') ? trimmed : `${trimmed}/api`;
+      }
+      return 'http://localhost:5000/api';
+    }
+    
+    // In production browser, fall back to relative path '/api'
+    return '/api';
+  }
+  
+  return envUrl || '/api';
 };
 
 const API_BASE_URL = getApiBaseUrl();
