@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: military-asset-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install && npx prisma generate
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: military-asset-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: NODE_ENV
+        value: production
+
+databases:
+  - name: military-asset-db
+    databaseName: military_assets
+    user: military_user

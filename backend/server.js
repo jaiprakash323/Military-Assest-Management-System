@@ -1,7 +1,9 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import dotenv from 'dotenv';
 import prisma from './config/db.js';
 
 // Route imports
@@ -12,7 +14,6 @@ import transferRoutes from './routes/transferRoutes.js';
 import assignmentRoutes from './routes/assignmentRoutes.js';
 import expenditureRoutes from './routes/expenditureRoutes.js';
 
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -66,15 +67,24 @@ app.use((err, req, res, next) => {
 // ─── Server Start ───────────────────────────────────────────────
 const startServer = async () => {
   try {
+    if (!process.env.DATABASE_URL) {
+      console.warn('⚠️ WARNING: DATABASE_URL environment variable is not defined!');
+    }
     await prisma.$connect();
     console.log('✅ Database connected successfully');
 
     app.listen(PORT, () => {
-      console.log(`🚀 Military Asset API running on http://localhost:${PORT}`);
+      console.log(`🚀 Military Asset API running on port ${PORT}`);
       console.log(`📋 Health check: http://localhost:${PORT}/api/health`);
     });
   } catch (error) {
     console.error('❌ Failed to start server:', error);
+    if (error.code === 'P1001') {
+      console.error('\n📌 Render / PostgreSQL Troubleshooting:');
+      console.error(' 1. Ensure `DATABASE_URL` environment variable is set in your Render Web Service Environment variables.');
+      console.error(' 2. Verify your Render PostgreSQL database service is created and running.');
+      console.error(' 3. If using an external database, append `?sslmode=require` to `DATABASE_URL` if SSL is required.\n');
+    }
     process.exit(1);
   }
 };

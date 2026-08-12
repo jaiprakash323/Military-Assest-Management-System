@@ -65,6 +65,29 @@ npm run dev
 - **Backend API:** http://localhost:5000/api
 - **Health Check:** http://localhost:5000/api/health
 
+## 🚀 Render Deployment Guide
+
+1. **Database Setup on Render:**
+   - Create a **PostgreSQL** database on [Render](https://render.com).
+   - Copy the **Internal Database URL** (or External Database URL if deploying backend outside Render).
+
+2. **Web Service Setup on Render:**
+   - Create a new **Web Service** on Render and connect your GitHub repository `jaiprakash323/Military-Assest-Management-System`.
+   - Set **Root Directory**: `backend`
+   - Set **Build Command**: `npm install && npx prisma generate`
+   - Set **Start Command**: `npm start`
+   - In **Environment Variables**, add:
+     - `DATABASE_URL`: *(Paste your Render PostgreSQL connection string, e.g. `postgresql://user:pass@dpg-xxx-a.render.com/military_assets?sslmode=require`)*
+     - `JWT_SECRET`: *(Set a strong secret key)*
+     - `NODE_ENV`: `production`
+
+3. **Database Migration & Seeding:**
+   - From the Render Web Service shell or locally connected to the Render DB:
+     ```bash
+     npx prisma db push
+     node prisma/seed.js
+     ```
+
 ## Test Credentials
 
 | Role | Username | Password |
