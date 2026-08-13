@@ -162,14 +162,9 @@ const Purchases = () => {
       )}
 
       {/* Header */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: '24px',
-      }}>
+      <div className="page-header-flex">
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <ShoppingCart size={28} style={{ color: 'var(--accent-blue)' }} />
+          <ShoppingCart size={28} style={{ color: 'var(--accent-blue)', flexShrink: 0 }} />
           <div>
             <h1 className="page-title">Purchases</h1>
             <p className="page-subtitle">Log incoming assets & view purchase history</p>

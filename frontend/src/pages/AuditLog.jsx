@@ -142,11 +142,13 @@ const AuditLog = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-        <ScrollText size={28} style={{ color: 'var(--accent-emerald)' }} />
-        <div>
-          <h1 className="page-title">Audit Log</h1>
-          <p className="page-subtitle">Complete system activity trail — Admin access only</p>
+      <div className="page-header-flex">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <ScrollText size={28} style={{ color: 'var(--accent-emerald)', flexShrink: 0 }} />
+          <div>
+            <h1 className="page-title">Audit Log</h1>
+            <p className="page-subtitle">Complete system activity trail — Admin access only</p>
+          </div>
         </div>
       </div>
 

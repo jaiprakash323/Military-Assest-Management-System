@@ -55,9 +55,9 @@ const FilterBar = ({ onFilterChange, showBaseFilter = true, showEquipmentFilter 
     <div style={{
       display: 'flex',
       alignItems: 'center',
-      gap: '12px',
+      gap: '10px',
       flexWrap: 'wrap',
-      padding: '16px 20px',
+      padding: '14px 16px',
       background: 'rgba(26, 31, 53, 0.5)',
       backdropFilter: 'blur(8px)',
       border: '1px solid var(--border-primary)',
@@ -72,6 +72,7 @@ const FilterBar = ({ onFilterChange, showBaseFilter = true, showEquipmentFilter 
         fontWeight: 600,
         textTransform: 'uppercase',
         letterSpacing: '0.06em',
+        marginRight: '4px',
       }}>
         <Filter size={14} />
         Filters
@@ -82,7 +83,7 @@ const FilterBar = ({ onFilterChange, showBaseFilter = true, showEquipmentFilter 
           className="form-select"
           value={filters.baseId}
           onChange={(e) => handleChange('baseId', e.target.value)}
-          style={{ minWidth: '160px', fontSize: '13px', padding: '8px 32px 8px 12px' }}
+          style={{ flex: '1 1 140px', minWidth: '130px', fontSize: '13px', padding: '8px 32px 8px 12px' }}
         >
           <option value="">All Bases</option>
           {bases.map(b => (
@@ -96,7 +97,7 @@ const FilterBar = ({ onFilterChange, showBaseFilter = true, showEquipmentFilter 
           className="form-select"
           value={filters.equipmentTypeId}
           onChange={(e) => handleChange('equipmentTypeId', e.target.value)}
-          style={{ minWidth: '180px', fontSize: '13px', padding: '8px 32px 8px 12px' }}
+          style={{ flex: '1 1 150px', minWidth: '140px', fontSize: '13px', padding: '8px 32px 8px 12px' }}
         >
           <option value="">All Equipment</option>
           {Object.entries(groupedEquipment).map(([category, items]) => (
@@ -110,13 +111,13 @@ const FilterBar = ({ onFilterChange, showBaseFilter = true, showEquipmentFilter 
       )}
 
       {showDateFilter && (
-        <>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', flex: '1 1 240px' }}>
           <input
             type="date"
             className="form-input"
             value={filters.startDate}
             onChange={(e) => handleChange('startDate', e.target.value)}
-            style={{ fontSize: '13px', padding: '8px 12px' }}
+            style={{ flex: '1 1 110px', fontSize: '13px', padding: '8px 10px' }}
             placeholder="Start Date"
           />
           <span style={{ color: 'var(--text-muted)', fontSize: '12px' }}>to</span>
@@ -125,10 +126,10 @@ const FilterBar = ({ onFilterChange, showBaseFilter = true, showEquipmentFilter 
             className="form-input"
             value={filters.endDate}
             onChange={(e) => handleChange('endDate', e.target.value)}
-            style={{ fontSize: '13px', padding: '8px 12px' }}
+            style={{ flex: '1 1 110px', fontSize: '13px', padding: '8px 10px' }}
             placeholder="End Date"
           />
-        </>
+        </div>
       )}
 
       {hasActiveFilters && (
@@ -147,6 +148,7 @@ const FilterBar = ({ onFilterChange, showBaseFilter = true, showEquipmentFilter 
             fontWeight: 600,
             cursor: 'pointer',
             transition: 'all var(--transition-fast)',
+            marginLeft: 'auto',
           }}
           onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(239, 68, 68, 0.2)'}
           onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)'}

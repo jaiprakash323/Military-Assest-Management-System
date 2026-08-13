@@ -238,11 +238,11 @@ const Login = () => {
             }}>
               Quick Access (Demo)
             </div>
-            <div style={{ display: 'flex', gap: '8px' }}>
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
               <button
                 type="button"
                 className="btn btn-ghost btn-sm"
-                style={{ flex: 1, fontSize: '11px' }}
+                style={{ flex: '1 1 80px', fontSize: '11px' }}
                 onClick={() => quickLogin('admin', 'admin123')}
               >
                 Admin
@@ -250,7 +250,7 @@ const Login = () => {
               <button
                 type="button"
                 className="btn btn-ghost btn-sm"
-                style={{ flex: 1, fontSize: '11px' }}
+                style={{ flex: '1 1 80px', fontSize: '11px' }}
                 onClick={() => quickLogin('commander_alpha', 'cmd123')}
               >
                 Commander
@@ -258,7 +258,7 @@ const Login = () => {
               <button
                 type="button"
                 className="btn btn-ghost btn-sm"
-                style={{ flex: 1, fontSize: '11px' }}
+                style={{ flex: '1 1 80px', fontSize: '11px' }}
                 onClick={() => quickLogin('logistics_officer', 'log123')}
               >
                 Logistics

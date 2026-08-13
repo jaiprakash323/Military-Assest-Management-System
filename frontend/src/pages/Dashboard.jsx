@@ -171,11 +171,7 @@ const Dashboard = () => {
       </div>
 
       {/* Charts */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: '20px',
-      }}>
+      <div className="dashboard-charts-grid">
         {/* Bar Chart - Movements by Month */}
         <div style={{
           background: 'rgba(26, 31, 53, 0.6)',

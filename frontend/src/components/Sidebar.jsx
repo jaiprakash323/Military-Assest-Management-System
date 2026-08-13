@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import {
@@ -10,13 +10,22 @@ import {
   Shield,
   ChevronLeft,
   ChevronRight,
-  Crosshair,
+  X,
 } from 'lucide-react';
 
-const Sidebar = () => {
+const Sidebar = ({ mobileOpen, onClose }) => {
   const { user, hasRole } = useAuth();
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 1024 : false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const navItems = [
     {
@@ -65,6 +74,7 @@ const Sidebar = () => {
   };
 
   const roleBadge = getRoleBadge();
+  const effectiveCollapsed = isMobile ? false : collapsed;
 
   return (
     <aside style={{
@@ -72,18 +82,20 @@ const Sidebar = () => {
       top: 0,
       left: 0,
       height: '100vh',
-      width: collapsed ? '72px' : 'var(--sidebar-width)',
+      width: effectiveCollapsed ? '72px' : 'var(--sidebar-width)',
       background: 'var(--bg-sidebar)',
       borderRight: '1px solid var(--border-primary)',
       display: 'flex',
       flexDirection: 'column',
-      transition: 'width var(--transition-normal)',
+      transition: 'transform var(--transition-normal), width var(--transition-normal)',
       zIndex: 100,
       overflow: 'hidden',
+      transform: isMobile ? (mobileOpen ? 'translateX(0)' : 'translateX(-100%)') : 'none',
+      boxShadow: isMobile && mobileOpen ? 'var(--shadow-lg)' : 'none',
     }}>
       {/* Logo Area */}
       <div style={{
-        padding: collapsed ? '20px 12px' : '20px 20px',
+        padding: effectiveCollapsed ? '20px 12px' : '20px 20px',
         borderBottom: '1px solid var(--border-primary)',
         display: 'flex',
         alignItems: 'center',
@@ -102,8 +114,8 @@ const Sidebar = () => {
         }}>
           <Shield size={20} color="white" />
         </div>
-        {!collapsed && (
-          <div style={{ overflow: 'hidden' }}>
+        {!effectiveCollapsed && (
+          <div style={{ overflow: 'hidden', flex: 1 }}>
             <div style={{
               fontSize: '15px',
               fontWeight: 800,
@@ -123,6 +135,26 @@ const Sidebar = () => {
             </div>
           </div>
         )}
+
+        {isMobile && (
+          <button
+            onClick={onClose}
+            aria-label="Close sidebar"
+            style={{
+              marginLeft: 'auto',
+              background: 'transparent',
+              border: 'none',
+              color: 'var(--text-muted)',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '6px',
+            }}
+          >
+            <X size={20} />
+          </button>
+        )}
       </div>
 
       {/* Navigation */}
@@ -135,11 +167,14 @@ const Sidebar = () => {
             <NavLink
               key={item.path}
               to={item.path}
+              onClick={() => {
+                if (isMobile && onClose) onClose();
+              }}
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '12px',
-                padding: collapsed ? '12px' : '11px 14px',
+                padding: effectiveCollapsed ? '12px' : '11px 14px',
                 marginBottom: '4px',
                 borderRadius: 'var(--radius-md)',
                 textDecoration: 'none',
@@ -148,7 +183,7 @@ const Sidebar = () => {
                 transition: 'all var(--transition-fast)',
                 fontSize: '14px',
                 fontWeight: isActive ? 600 : 500,
-                justifyContent: collapsed ? 'center' : 'flex-start',
+                justifyContent: effectiveCollapsed ? 'center' : 'flex-start',
                 position: 'relative',
               }}
               onMouseEnter={(e) => {
@@ -177,7 +212,7 @@ const Sidebar = () => {
                 }} />
               )}
               <Icon size={19} />
-              {!collapsed && <span>{item.label}</span>}
+              {!effectiveCollapsed && <span>{item.label}</span>}
             </NavLink>
           );
         })}
@@ -185,10 +220,10 @@ const Sidebar = () => {
 
       {/* User Info & Collapse Toggle */}
       <div style={{
-        padding: collapsed ? '16px 8px' : '16px',
+        padding: effectiveCollapsed ? '16px 8px' : '16px',
         borderTop: '1px solid var(--border-primary)',
       }}>
-        {!collapsed && (
+        {!effectiveCollapsed && (
           <div style={{
             padding: '12px',
             background: 'rgba(255,255,255,0.03)',
@@ -234,35 +269,39 @@ const Sidebar = () => {
           </div>
         )}
 
-        <button
-          onClick={() => setCollapsed(!collapsed)}
-          style={{
-            width: '100%',
-            padding: '8px',
-            background: 'rgba(255,255,255,0.04)',
-            border: '1px solid var(--border-primary)',
-            borderRadius: 'var(--radius-sm)',
-            color: 'var(--text-muted)',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: 'all var(--transition-fast)',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'var(--accent-blue)';
-            e.currentTarget.style.color = 'var(--accent-blue)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'var(--border-primary)';
-            e.currentTarget.style.color = 'var(--text-muted)';
-          }}
-        >
-          {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
-        </button>
+        {!isMobile && (
+          <button
+            onClick={() => setCollapsed(!collapsed)}
+            aria-label="Toggle collapse"
+            style={{
+              width: '100%',
+              padding: '8px',
+              background: 'rgba(255,255,255,0.04)',
+              border: '1px solid var(--border-primary)',
+              borderRadius: 'var(--radius-sm)',
+              color: 'var(--text-muted)',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all var(--transition-fast)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'var(--accent-blue)';
+              e.currentTarget.style.color = 'var(--accent-blue)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'var(--border-primary)';
+              e.currentTarget.style.color = 'var(--text-muted)';
+            }}
+          >
+            {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+          </button>
+        )}
       </div>
     </aside>
   );
 };
 
 export default Sidebar;
+

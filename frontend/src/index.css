@@ -766,21 +766,130 @@ textarea.form-input {
 .text-right { text-align: right; }
 .opacity-60 { opacity: 0.6; }
 
-/* ─── Responsive ───────────────────────────────────────────── */
+/* ─── Responsive & Mobile Styles ──────────────────────────── */
+.sidebar-overlay {
+  display: none;
+}
+
+.mobile-only {
+  display: none !important;
+}
+
+.desktop-only {
+  display: flex !important;
+}
+
+.page-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+
+.dashboard-charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
 @media (max-width: 1200px) {
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
+  header.navbar-container {
+    left: 0 !important;
+    padding: 0 14px !important;
+  }
+
+  .dashboard-charts-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+  
+  .mobile-only {
+    display: flex !important;
+  }
+
   .main-content {
-    margin-left: 0;
+    margin-left: 0 !important;
   }
-  
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 99;
+    animation: fadeIn 0.2s ease;
+  }
+
   .page-container {
-    padding: 16px;
+    padding: 20px 16px;
   }
-  
+
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .page-header-flex {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .page-header-flex .btn {
+    width: 100%;
+  }
+
   .grid-4, .grid-3, .grid-2 {
     grid-template-columns: 1fr;
   }
+
+  .modal-content {
+    padding: 20px 16px;
+    width: calc(100% - 24px);
+    margin: 12px;
+    max-height: 85vh;
+  }
+
+  .toast {
+    top: 12px;
+    right: 12px;
+    left: 12px;
+    max-width: none;
+    font-size: 13px;
+  }
+
+  .data-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .data-table th, .data-table td {
+    padding: 10px 12px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .page-title {
+    font-size: 20px;
+  }
+
+  .page-subtitle {
+    font-size: 12px;
+  }
 }
+

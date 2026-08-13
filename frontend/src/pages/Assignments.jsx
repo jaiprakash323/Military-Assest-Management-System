@@ -160,9 +160,9 @@ const Assignments = () => {
         </div>
       )}
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+      <div className="page-header-flex">
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <Users size={28} style={{ color: 'var(--accent-amber)' }} />
+          <Users size={28} style={{ color: 'var(--accent-amber)', flexShrink: 0 }} />
           <div>
             <h1 className="page-title">Assignments & Expenditures</h1>
             <p className="page-subtitle">Track equipment allocation and consumption</p>
@@ -179,12 +179,14 @@ const Assignments = () => {
       {/* Tabs */}
       <div style={{
         display: 'flex',
+        flexWrap: 'wrap',
         gap: '4px',
         padding: '4px',
         background: 'rgba(26, 31, 53, 0.6)',
         borderRadius: 'var(--radius-md)',
         marginBottom: '20px',
         width: 'fit-content',
+        maxWidth: '100%',
         border: '1px solid var(--border-primary)',
       }}>
         {tabs.map((tab) => {

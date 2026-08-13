@@ -199,14 +199,9 @@ const Transfers = () => {
         </div>
       )}
 
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: '24px',
-      }}>
+      <div className="page-header-flex">
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <ArrowRightLeft size={28} style={{ color: 'var(--accent-purple)' }} />
+          <ArrowRightLeft size={28} style={{ color: 'var(--accent-purple)', flexShrink: 0 }} />
           <div>
             <h1 className="page-title">Transfers</h1>
             <p className="page-subtitle">Manage base-to-base asset movements</p>

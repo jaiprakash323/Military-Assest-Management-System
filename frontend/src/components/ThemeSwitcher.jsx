@@ -72,6 +72,7 @@ const ThemeSwitcher = () => {
             top: 'calc(100% + 8px)',
             right: 0,
             width: '280px',
+            maxWidth: 'calc(100vw - 32px)',
             background: 'var(--bg-sidebar)',
             border: '1px solid var(--border-primary)',
             borderRadius: 'var(--radius-lg)',
