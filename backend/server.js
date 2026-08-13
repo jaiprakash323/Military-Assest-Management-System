@@ -39,7 +39,34 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ─── Health Check ───────────────────────────────────────────────
+// ─── Root & Health Check Routes ──────────────────────────────────
+app.get('/', (req, res) => {
+  if (fs.existsSync(frontendDistPath)) {
+    return res.sendFile(path.join(frontendDistPath, 'index.html'));
+  }
+  res.status(200).json({
+    message: 'Welcome to Military Asset Management API',
+    status: 'operational',
+    healthCheck: '/api/health',
+    endpoints: {
+      auth: '/api/auth',
+      assets: '/api/assets',
+      purchases: '/api/purchases',
+      transfers: '/api/transfers',
+      assignments: '/api/assignments',
+      expenditures: '/api/expenditures',
+    },
+  });
+});
+
+app.get('/api', (req, res) => {
+  res.status(200).json({
+    message: 'Military Asset Management API Root',
+    status: 'operational',
+    healthCheck: '/api/health',
+  });
+});
+
 app.get('/api/health', async (req, res) => {
   try {
     await prisma.$queryRaw`SELECT 1`;
@@ -60,6 +87,7 @@ app.get('/api/health', async (req, res) => {
     });
   }
 });
+
 
 
 // ─── API Routes ─────────────────────────────────────────────────
