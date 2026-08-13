@@ -28,6 +28,7 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: 'Invalid credentials.' });
     }
 
+    const jwtSecret = process.env.JWT_SECRET || 'military-asset-secret-key-default-2026';
     const token = jwt.sign(
       {
         userId: user.id,
@@ -35,7 +36,7 @@ export const login = async (req, res) => {
         role: user.role,
         baseId: user.baseId,
       },
-      process.env.JWT_SECRET,
+      jwtSecret,
       { expiresIn: '24h' }
     );
 

@@ -17,7 +17,8 @@ export const authenticateToken = async (req, res, next) => {
       });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const jwtSecret = process.env.JWT_SECRET || 'military-asset-secret-key-default-2026';
+    const decoded = jwt.verify(token, jwtSecret);
 
     // Verify user still exists in database
     const user = await prisma.user.findUnique({
