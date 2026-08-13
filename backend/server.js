@@ -11,7 +11,9 @@ import prisma from './config/db.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const frontendDistPath = path.join(__dirname, '../frontend/dist');
+const frontendDistPath = fs.existsSync(path.join(__dirname, 'public'))
+  ? path.join(__dirname, 'public')
+  : path.join(__dirname, '../frontend/dist');
 
 // Route imports
 import authRoutes from './routes/authRoutes.js';
