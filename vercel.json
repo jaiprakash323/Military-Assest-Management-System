@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://military-asset-backend.onrender.com/api/:path*"
+      "destination": "https://military-assest-management-api.onrender.com/api/:path*"
     },
     {
       "source": "/((?!api/).*)",

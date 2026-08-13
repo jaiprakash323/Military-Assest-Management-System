@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: military-asset-backend
+    name: military-assest-management-api
     env: node
     rootDir: backend
     buildCommand: cd ../frontend && npm install --include=dev && npm run build && node -e "fs.cpSync('dist', '../backend/public', { recursive: true })" && cd ../backend && npm install && npx prisma generate
