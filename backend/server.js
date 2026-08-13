@@ -11,6 +11,7 @@ import prisma from './config/db.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const frontendDistPath = path.join(__dirname, '../frontend/dist');
 
 // Route imports
 import authRoutes from './routes/authRoutes.js';
@@ -99,7 +100,6 @@ app.use('/api/assignments', assignmentRoutes);
 app.use('/api/expenditures', expenditureRoutes);
 
 // ─── Static Frontend (Production) ────────────────────────────────
-const frontendDistPath = path.join(__dirname, '../frontend/dist');
 if (fs.existsSync(frontendDistPath)) {
   app.use(express.static(frontendDistPath));
   app.get('*', (req, res, next) => {
