@@ -42,8 +42,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // ─── Root & Health Check Routes ──────────────────────────────────
 app.get('/', (req, res) => {
-  if (fs.existsSync(frontendDistPath)) {
-    return res.sendFile(path.join(frontendDistPath, 'index.html'));
+  const indexPath = path.join(frontendDistPath, 'index.html');
+  if (fs.existsSync(indexPath)) {
+    return res.sendFile(indexPath);
   }
   res.status(200).json({
     message: 'Welcome to Military Asset Management API',
