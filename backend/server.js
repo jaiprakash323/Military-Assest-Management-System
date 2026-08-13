@@ -74,12 +74,14 @@ app.use('/api/expenditures', expenditureRoutes);
 const frontendDistPath = path.join(__dirname, '../frontend/dist');
 if (fs.existsSync(frontendDistPath)) {
   app.use(express.static(frontendDistPath));
-  app.get('{*splat}', (req, res, next) => {
+  app.get('*', (req, res, next) => {
     if (req.originalUrl.startsWith('/api')) {
       return next();
     }
     res.sendFile(path.join(frontendDistPath, 'index.html'));
   });
+} else {
+  console.warn(`⚠️ Warning: Static frontend build not found at ${frontendDistPath}`);
 }
 
 // ─── 404 Handler ────────────────────────────────────────────────
