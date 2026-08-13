@@ -40,13 +40,27 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ─── Health Check ───────────────────────────────────────────────
-app.get('/api/health', (req, res) => {
-  res.status(200).json({
-    status: 'operational',
-    service: 'Military Asset Management API',
-    timestamp: new Date().toISOString(),
-  });
+app.get('/api/health', async (req, res) => {
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+    res.status(200).json({
+      status: 'operational',
+      database: 'connected',
+      service: 'Military Asset Management API',
+      timestamp: new Date().toISOString(),
+    });
+  } catch (dbError) {
+    console.error('Health Check DB Connection Error:', dbError);
+    res.status(503).json({
+      status: 'degraded',
+      database: 'disconnected',
+      error: dbError.message,
+      service: 'Military Asset Management API',
+      timestamp: new Date().toISOString(),
+    });
+  }
 });
+
 
 // ─── API Routes ─────────────────────────────────────────────────
 app.use('/api/auth', authRoutes);
