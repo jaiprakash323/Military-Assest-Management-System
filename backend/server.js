@@ -105,7 +105,7 @@ app.use('/api/expenditures', expenditureRoutes);
 // ─── Static Frontend (Production) ────────────────────────────────
 if (fs.existsSync(frontendDistPath)) {
   app.use(express.static(frontendDistPath));
-  app.get('*', (req, res, next) => {
+  app.get('{*splat}', (req, res, next) => {
     if (req.originalUrl.startsWith('/api')) {
       return next();
     }
